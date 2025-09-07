@@ -160,7 +160,15 @@ void clearList(User*& head) {
 
 // Returns number of nodes.
 size_t size(User* head) {
-    // TODO: implement
+    size_t count = 0;
+
+    User* current = head;
+
+    while(current != nullptr) {
+        count++;
+        current = current->next;
+    }
+     return count;
     
     return 0;
 }
