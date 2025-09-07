@@ -176,7 +176,20 @@ size_t size(User* head) {
 // Prints usernames in order, separated by " -> " then " -> NULL".
 // Example: alice -> bob -> charlie -> NULL
 void printUsers(User* head) {
-    // TODO: implement
+    User* current = head;
+    
+    cout << "Contents: \n";
+
+    while(current != nullptr) {
+        cout << current->username;
+
+        if(current->next != nullptr) {
+            cout << " -> ";
+        }
+
+        current = current->next;
+    }
+     cout << " -> NULL \n";
     
 }
 
