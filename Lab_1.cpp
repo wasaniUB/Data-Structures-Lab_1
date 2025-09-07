@@ -143,7 +143,18 @@ bool removeByUsername(User*& head, const string& username) {
 
 // Deletes ALL nodes and sets head=nullptr. 
 void clearList(User*& head) {
-    // TODO: implement
+    if (head == nullptr) {
+        cout << "Everything is already gone. Nothing to delete \n";
+    }
+
+    while(head != nullptr) {
+           User* temp = head;
+           head = head->next;
+           delete temp;
+    }
+    head = nullptr;
+
+    cout << "All nodes were deleted. Yor list has been cleard.\n";
     
 }
 
