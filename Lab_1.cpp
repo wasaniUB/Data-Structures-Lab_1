@@ -14,10 +14,46 @@ struct User {
     }
 };
 
+bool insertUser(User*& head, const string& username, const string& password);
+User* findUser(User* head, const string& username);
+bool authenticate(User* head, const string& username, const string& password);
+bool removeFront(User*& head);
+bool removeByUsername(User*& head, const string& username);
+void clearList(User*& head);
+size_t size(User* head);
+void printUsers(User* head);
 
 int main() {
-  
+   User* head = nullptr;
     
+   cout << "=== INSERT USERS ===\n";
+    insertUser(head, "alice", "123");
+    insertUser(head, "bob", "456");
+    insertUser(head, "charlie", "789");
+
+      
+    printUsers(head);
+
+    cout << "Size: " << size(head) << "\n";
+
+    if(authenticate(head, "bob", "456")) {
+          cout << "bob authenticated\n";
+         
+        } 
+           else {
+             cout << "authentication failed! Please try again.\n";
+    }
+
+    removeFront(head);
+    printUsers(head);
+
+    removeByUsername(head, "charlie");
+    printUsers(head);
+
+    cout << "Size: " << size(head) << "\n";
+
+    clearList(head);
+    printUsers(head);
     
     return 0;
 }
@@ -29,7 +65,8 @@ int main() {
 // Inserts a new (username, password) at the END of the list.
 // If username already exists, do NOT insert a duplicate; return false.
 // Otherwise insert and return true.
-bool insertUser(User*& head, const string& username, const string& password) {
+bool insertUser(User*& head, const string& username, const string& password) {  
+    //RUNTIME: O(n)
     
      if(head == nullptr) {
          User* newHead = new User(username, password);
@@ -56,7 +93,8 @@ bool insertUser(User*& head, const string& username, const string& password) {
 }
 
 // Returns pointer to the node with matching username; otherwise nullptr.
-User* findUser(User* head, const string& username) {
+User* findUser(User* head, const string& username) { 
+    //RUNTIME: O(n)
     User* search = head;
 
 
@@ -73,7 +111,8 @@ User* findUser(User* head, const string& username) {
 }
 
 // Returns true if (username, password) matches an existing node; false otherwise.
-bool authenticate(User* head, const string& username, const string& password) {
+bool authenticate(User* head, const string& username, const string& password) {  
+    //RUNTIME: O(n)
       User* current = head;
 
       while(current != nullptr) {
@@ -90,7 +129,8 @@ bool authenticate(User* head, const string& username, const string& password) {
 // Deletes the FIRST node (head) and updates head. No-op if list is empty.
 // Return true if a node was deleted, false otherwise.
 bool removeFront(User*& head) {
-    
+     //RUNTIME: O(1)
+
     if (head == nullptr) {
         return false;
     }
@@ -109,7 +149,8 @@ bool removeFront(User*& head) {
 // Deletes the node with matching username (first match only).
 // Return true if a node was found & deleted; false if not found.
 bool removeByUsername(User*& head, const string& username) {
-     
+      //RUNTIME: O(n)
+
     User* previous = head;
     User* current = head->next;
 
@@ -143,6 +184,8 @@ bool removeByUsername(User*& head, const string& username) {
 
 // Deletes ALL nodes and sets head=nullptr. 
 void clearList(User*& head) {
+      //RUNTIME: O(n)
+
     if (head == nullptr) {
         cout << "Everything is already gone. Nothing to delete \n";
     }
@@ -160,6 +203,8 @@ void clearList(User*& head) {
 
 // Returns number of nodes.
 size_t size(User* head) {
+     //RUNTIME: O(n)
+
     size_t count = 0;
 
     User* current = head;
@@ -176,6 +221,8 @@ size_t size(User* head) {
 // Prints usernames in order, separated by " -> " then " -> NULL".
 // Example: alice -> bob -> charlie -> NULL
 void printUsers(User* head) {
+     //RUNTIME: O(n)
+     
     User* current = head;
     
     cout << "Contents: \n";
