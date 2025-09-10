@@ -25,36 +25,34 @@ void printUsers(User* head);
 
 int main() {
    User* head = nullptr;
-    
-   cout << "=== INSERT USERS ===\n";
-    insertUser(head, "alice", "123");
-    insertUser(head, "bob", "456");
-    insertUser(head, "charlie", "789");
 
+       
+     insertUser(head, "alice", "123");
+     insertUser(head, "bob", "456");
+     insertUser(head, "charlie", "789");
+     insertUser(head, "delrick", "199");
+     insertUser(head, "charlie", "202");
+     insertUser(head, "william", "200");
+     insertUser(head, "diana", "111");
+     insertUser(head, "abdulah", "887");
+     insertUser(head, "gumball", "211");
+     insertUser(head, "darwin", "212");
+  
+      printUsers(head);
+
+         cout << "Size: " << size(head) << "\n";
+
+      removeFront(head);
+      printUsers(head);
+
+         removeByUsername(head, "charlie");
+         printUsers(head);
       
-    printUsers(head);
+            cout << "Size: " << size(head) << "\n";
 
-    cout << "Size: " << size(head) << "\n";
+            clearList(head);
+            printUsers(head);
 
-    if(authenticate(head, "bob", "456")) {
-          cout << "bob authenticated\n";
-         
-        } 
-           else {
-             cout << "authentication failed! Please try again.\n";
-    }
-
-    removeFront(head);
-    printUsers(head);
-
-    removeByUsername(head, "charlie");
-    printUsers(head);
-
-    cout << "Size: " << size(head) << "\n";
-
-    clearList(head);
-    printUsers(head);
-    
     return 0;
 }
 
@@ -69,7 +67,7 @@ bool insertUser(User*& head, const string& username, const string& password) {
     //RUNTIME: O(n)
     
      if(head == nullptr) {
-         User* newHead = new User(username, password);
+         head = new User(username, password);
         return true;
      }
 
@@ -116,8 +114,8 @@ bool authenticate(User* head, const string& username, const string& password) {
       User* current = head;
 
       while(current != nullptr) {
-     if(current->username == username && current->password == password) {
-       return true;
+          if(current->username == username && current->password == password) {
+            return true;
      }
 
      current = current->next;
@@ -209,10 +207,11 @@ size_t size(User* head) {
 
     User* current = head;
 
-    while(current != nullptr) {
-        count++;
-        current = current->next;
-    }
+        while(current != nullptr) {
+             count++;
+             current = current->next;
+        }
+
      return count;
     
     return 0;
@@ -227,15 +226,16 @@ void printUsers(User* head) {
     
     cout << "Contents: \n";
 
-    while(current != nullptr) {
-        cout << current->username;
+        while(current != nullptr) {
+            cout << current->username;
 
-        if(current->next != nullptr) {
-            cout << " -> ";
-        }
+            if(current->next != nullptr) {
+               cout << " -> ";
+          }
 
         current = current->next;
     }
+
      cout << " -> NULL \n";
     
 }
